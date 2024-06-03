@@ -49,8 +49,6 @@ public class TestCases {
             // ArrayList<MapInputs> table_Data = new ArrayList<>();
             ArrayList<HashMap<String, Object>> table_Data = new ArrayList<>();
 
-            long epochTime = System.currentTimeMillis() / 1000;
-
             // using for loop and in the url pagenumber is iterating
             for (int pNum = 1; pNum <= 4; pNum++) {
 
@@ -75,7 +73,7 @@ public class TestCases {
                         String teamName = row_Cell.get(0).getText();
                         int year = Integer.parseInt(row_Cell.get(1).getText());
                         Double win_Percent = Double.parseDouble(row_Cell.get(5).getText());
-
+                        
                         if (win_Percent < 0.40) {
                             long epoch_Time = System.currentTimeMillis() / 1000;
 
@@ -130,24 +128,28 @@ public class TestCases {
             // click on each year
             for (WebElement yearLink : list_of_Years) {
                 String year_Text = yearLink.getText();
+                // storing year in a varaiable
                 int year = Integer.parseInt(year_Text);
+                //click on year link
                 utility.clickOnElement(yearLink);
-
                 // Get the table info
                 WebElement movies_List = driver.findElement(By.xpath("//table[@class='table']"));
+                // Get the row info
                 List<WebElement> table_Rows = movies_List.findElements(By.tagName("tr"));
+
                 boolean row_Header = true;
-
                 int movieCount = 0;
-
+                //to ignore row header
                 for (WebElement row : table_Rows) {
                     if (row_Header) {
                         row_Header = false;
                         continue;
                     }
+                    //once it reaches 5 moviecounts, rows loop should stop
                     if (movieCount >= 5) {
                         break;
                     }
+                    //get the cell info
                     List<WebElement> row_Cell = row.findElements(By.tagName("td"));
 
                     if (row_Cell.size() > 0) {
@@ -157,12 +159,12 @@ public class TestCases {
 
                         int nominations = 0;
                         int awards = 0;
-                        //to handle empty string issue
-                        if (!nominations_Text.isEmpty()) {
+                        //to handle null string issue
+                        if (nominations_Text!=null) {
                             nominations = Integer.parseInt(nominations_Text);
                         }
-                        //to handle empty string issue
-                        if (!awards_Text.isEmpty()) {
+                        //to handle null string issue
+                        if (awards_Text!=null) {
                             awards = Integer.parseInt(awards_Text);
                         }
 
