@@ -80,12 +80,14 @@ public class TestCases {
                             MapInputs inputs = new MapInputs(epoch_Time, teamName, year, win_Percent);
 
                             HashMap<String, Object> Map = new HashMap<>();
-
-                            Map.put("EpochTime", inputs.getEpochTime());
-                            Map.put("TeamName", inputs.getTeamNames());
-                            Map.put("Year", inputs.getYear());
                             Map.put("WinPercent", inputs.getWinPercentage());
+                            Map.put("Year", inputs.getYear());
+                            Map.put("TeamName", inputs.getTeamNames());
+                            Map.put("EpochTime", inputs.getEpochTime());                         
+                          
                             table_Data.add(Map);
+                            
+                            
                         }
 
                     }
@@ -167,7 +169,7 @@ public class TestCases {
                         if (awards_Text!=null) {
                             awards = Integer.parseInt(awards_Text);
                         }
-
+                        //returns a boolean value true if movieCount is 0.
                         boolean isWinner = movieCount == 0; // first movie is the best picture winner
 
                         long epochTime = System.currentTimeMillis() / 1000;
@@ -175,13 +177,13 @@ public class TestCases {
                         MapInputs inputs = new MapInputs(epochTime, year, movie_Title, nominations, awards,isWinner);
                         //mapinputs as object into this HashMap
                         HashMap<String, Object> dataMap = new HashMap<>();
-                        dataMap.put("EpochTime", inputs.getEpochTime());
-                        dataMap.put("Year", inputs.getYear());
-                        dataMap.put("Title", inputs.getTitle());
-                        dataMap.put("Nominations", inputs.getNomination());
-                        dataMap.put("Awards", inputs.getAwards());
                         dataMap.put("isWinner", inputs.getisWinner());
-
+                        dataMap.put("Awards", inputs.getAwards());
+                        dataMap.put("Nominations", inputs.getNomination());
+                        dataMap.put("Title", inputs.getTitle());
+                        dataMap.put("Year", inputs.getYear());
+                        dataMap.put("EpochTime", inputs.getEpochTime());
+                        
                         movie_Data.add(dataMap);
                         movieCount++;
                     }

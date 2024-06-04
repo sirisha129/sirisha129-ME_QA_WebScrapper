@@ -58,7 +58,7 @@ public class wrapperMethods {
            
             File jsonFile = new File(file_Dir, filePath);
             //writing map data into json format
-            mapper.writeValue(jsonFile, table_Data);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(jsonFile, table_Data);
 
         } catch (IOException e) {
             e.printStackTrace();
